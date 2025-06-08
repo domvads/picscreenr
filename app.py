@@ -15,8 +15,9 @@ from services.image_caption import load_model as load_caption_model, generate_ca
 from services.face_recognition import detect_faces, compare_faces
 from services.feature_matching import extract_color_histogram, compare_histograms
 
-UPLOAD_FOLDER = os.path.join(os.getcwd(), "uploads")
-DB_PATH = os.path.join(os.getcwd(), "picscreenr.db")
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+UPLOAD_FOLDER = os.path.join(BASE_DIR, "uploads")
+DB_PATH = os.path.join(BASE_DIR, "picscreenr.db")
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
