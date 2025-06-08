@@ -2,6 +2,17 @@
 
 A simple Flask application for uploading images, generating captions and tags, and identifying people across images using face recognition and clothing feature matching.
 
+## Prerequisites
+
+- Python 3.8 or higher.
+- On Windows, install Visual Studio Build Tools and CMake so that the `dlib` library required by `face_recognition` can compile.
+
+Verify CMake is accessible:
+```bash
+cmake --version
+```
+
+
 ## Setup
 
 Install dependencies:
