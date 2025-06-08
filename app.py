@@ -64,7 +64,11 @@ def upload_image():
                 .filter(Person.face_embedding.isnot(None))
                 .all()
             )
-            known_embeddings = [pickle.loads(p.face_embedding) for p in known_persons]
+            known_embeddings = [
+                pickle.loads(p.face_embedding)
+                for p in known_persons
+                if p.face_embedding is not None
+            ]
             face_embeddings = detect_faces(filename)
             persons_in_image: List[PersonImage] = []
 
@@ -79,7 +83,10 @@ def upload_image():
                     known_persons.append(person)
                     known_embeddings.append(embedding)
                 link = PersonImage(
-                    person_id=person.id, image_id=image_record.id, confidence=1 - distance
+                    person_id=person.id,
+                    image_id=image_record.id,
+                    confidence=1 - distance,
+                    person=person,
                 )
                 session.add(link)
                 persons_in_image.append(link)
@@ -95,7 +102,10 @@ def upload_image():
                 # index from compare_histograms maps to feature_pairs, not known_persons
                 person = feature_pairs[idx][0]
                 link = PersonImage(
-                    person_id=person.id, image_id=image_record.id, confidence=score
+                    person_id=person.id,
+                    image_id=image_record.id,
+                    confidence=score,
+                    person=person,
                 )
                 session.add(link)
                 persons_in_image.append(link)
@@ -109,7 +119,10 @@ def upload_image():
                     session.flush()
                 person.feature_vector = pickle.dumps(candidate_hist)
                 link = PersonImage(
-                    person_id=person.id, image_id=image_record.id, confidence=score
+                    person_id=person.id,
+                    image_id=image_record.id,
+                    confidence=score,
+                    person=person,
                 )
                 session.add(link)
                 persons_in_image.append(link)
