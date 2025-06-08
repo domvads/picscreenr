@@ -6,3 +6,4 @@ torch
 face_recognition
 opencv-python-headless
 numpy
+requests
