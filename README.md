@@ -11,6 +11,9 @@ A simple Flask application for uploading images, generating captions and tags, a
   Build Tools as well as CMake so that the `dlib` library required by
   `face_recognition` can compile.  An error like `python313t.lib` missing often
   indicates an unsupported Python version.
+- A recent version of the `transformers` library (e.g. 4.26 or newer) is
+  required for caption generation.  Older releases may raise
+  `NotImplementedError` when using beam search.
 
 Verify CMake is accessible:
 ```bash
