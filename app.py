@@ -59,7 +59,11 @@ def upload_image():
             session.flush()
 
             # face recognition
-            known_persons = session.query(Person).all()
+            known_persons = (
+                session.query(Person)
+                .filter(Person.face_embedding.isnot(None))
+                .all()
+            )
             known_embeddings = [pickle.loads(p.face_embedding) for p in known_persons]
             face_embeddings = detect_faces(filename)
             persons_in_image: List[PersonImage] = []
