@@ -67,11 +67,17 @@ def upload_image():
         persons_in_image.append(link)
 
     # clothing features
-    known_features = [pickle.loads(p.feature_vector) if p.feature_vector else None for p in known_persons]
+    feature_pairs = [
+        (p, pickle.loads(p.feature_vector))
+        for p in known_persons
+        if p.feature_vector
+    ]
+    known_hists = [hist for _, hist in feature_pairs]
     candidate_hist = extract_color_histogram(filename)
-    idx, score = compare_histograms([f for f in known_features if f is not None], candidate_hist)
+    idx, score = compare_histograms(known_hists, candidate_hist)
     if idx >= 0:
-        person = known_persons[idx]
+        # index from compare_histograms maps to feature_pairs, not known_persons
+        person = feature_pairs[idx][0]
         link = PersonImage(person_id=person.id, image_id=image_record.id, confidence=score)
         session.add(link)
         persons_in_image.append(link)
