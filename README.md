@@ -30,3 +30,7 @@ Run the Flask app using `python app.py` and then execute:
 python gui.py
 ```
 Choose the folder containing your images and they will be uploaded automatically.
+
+## License
+
+This project is licensed under the terms of the [MIT License](LICENSE).
