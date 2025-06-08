@@ -3,6 +3,11 @@ import importlib
 import sys
 import types
 from pathlib import Path
+import importlib.util
+import pytest
+
+if importlib.util.find_spec("flask") is None:
+    pytest.skip("flask not installed", allow_module_level=True)
 
 
 def create_app(tmp_path):
