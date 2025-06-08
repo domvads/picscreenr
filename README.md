@@ -4,8 +4,13 @@ A simple Flask application for uploading images, generating captions and tags, a
 
 ## Prerequisites
 
-- Python 3.8–3.11 are known to work with `dlib`; newer versions such as 3.13 may not yet provide prebuilt wheels.
-- On Windows, install Visual Studio Build Tools and CMake so that the `dlib` library required by `face_recognition` can compile.
+- Python 3.8–3.11 are known to work with `dlib`; newer versions such as 3.13
+  currently lack prebuilt wheels.  Using Python 3.11 or earlier is therefore
+  strongly recommended.
+- On Windows, make sure to use a 64‑bit Python and install Visual Studio
+  Build Tools as well as CMake so that the `dlib` library required by
+  `face_recognition` can compile.  An error like `python313t.lib` missing often
+  indicates an unsupported Python version.
 
 Verify CMake is accessible:
 ```bash
