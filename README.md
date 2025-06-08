@@ -24,10 +24,19 @@ Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
+On Windows the `py` launcher should be used for both installation and running
+the app to ensure the same Python interpreter is used:
+```powershell
+py -m pip install -r requirements.txt
+```
 
 Run the application:
 ```bash
 python app.py
+```
+On Windows:
+```powershell
+py app.py
 ```
 
 Use `/upload_image` endpoint with a POST request containing an image file under `file` field.
