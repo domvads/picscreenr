@@ -1,7 +1,6 @@
 """Flask application for picscreenr."""
 
 import os
-import io
 from typing import List
 from flask import Flask, request, jsonify, send_from_directory
 from sqlalchemy import create_engine
