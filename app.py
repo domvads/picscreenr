@@ -90,6 +90,9 @@ def upload_image():
             session.add(person)
             session.commit()
         person.feature_vector = pickle.dumps(candidate_hist)
+        link = PersonImage(person_id=person.id, image_id=image_record.id, confidence=score)
+        session.add(link)
+        persons_in_image.append(link)
 
     session.commit()
     return jsonify({'image_id': image_record.id, 'caption': caption, 'tags': tags})
